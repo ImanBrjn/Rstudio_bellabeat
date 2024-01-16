@@ -38,7 +38,7 @@ library(ggplot2)
 library(tidyr)
 library(readr)
 ```
-[stat]
+![Start](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/1a044868-a21f-468a-8101-36b31063d876)   
 Then, I loaded the necessary datasets from my local computer location into R Studio.
 ```{r}
 # Loading data from my local storage
@@ -70,7 +70,11 @@ glimpse(sleep)
 # weight
 glimpse(weight)
 ```
-[glimpse]
+![activity glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/c136796b-024a-4e22-92c6-0b82eb7eb3ae)   
+![calories glimps](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b6419f7b-184b-4efc-b9fd-b95e488757ac)   
+![intensities glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/23ec7ca8-8840-44e0-be6e-3bb117a415f4)   
+![sleep glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/7ede147b-264f-431b-8683-102be13cb780)   
+![weight glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/42e2eafc-6455-4298-b7e7-4504c1253dc9)   
 #### Cleaning data
 By looking at the datasets, I noticed that some columns include both *date* and *time* in the same cells. I decided to separate these two into different columns for each dataset, maintaining the same date and time format.
 ```{r}
@@ -115,7 +119,8 @@ any(is.na(sleep))
 # weight
 any(is.na(weight))
 ```
-[missing]
+![missing values](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/66902451-d727-4aeb-9279-f29669ac8f72)   
+
 **TRUE** indicates that there are some missing values, and by checking the data sets, it is obvious that there are some *NA* in the *FAT* column. I don't need this column, so I decided to omit it.
 ```
 # Omit "fat" column
@@ -125,7 +130,7 @@ weight <- weight[, !(names(weight) %in% c("Fat"))]
 # Check "weight" data sets again
 any(is.na(weight))
 ```
-[reckeck]
+![recheck](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b6e181a2-1ee1-47f6-a4c3-e13eea101d82)    
 Next, I checked the datasets for any duplicates
 ```
 # Checking for duplicates
@@ -135,8 +140,7 @@ sum(duplicated(intensities))
 sum(duplicated(sleep))
 sum(duplicated(weight))
 ```
-[duplicate]
-
+![duplicates](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/27de4861-c8c9-4db4-ae1d-3a8f67be4123)   
 The result shows that there are three duplicate rows in the *sleep* dataset. So, I removed the duplicates.
 ```
 # Removing duplicates
@@ -145,7 +149,7 @@ sleep <- sleep %>% distinct()
 # Checking again
 sum(duplicated(sleep))
 ```
-[remove duplicates]
+![remove duplicates](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/8d2b4138-1845-4162-9774-dd8b9cebbbc3)   
 I wanted to make a comparison between "activity" and "sleep". So, I decided to merge these two datasets into a dataset called "**merged_df**" using an **inner join** on columns *Id* and *date* (that I previously created after converting data to date-time format).
 ```
 # Merging activity and sleep 
@@ -165,7 +169,7 @@ n_distinct(intensities$Id)
 n_distinct(sleep$Id)
 n_distinct(weight$Id)
 ```
-[participants]
+![participants](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/1103e549-a46a-4733-a930-ff8b322d79d7)    
 The results show that there are 33 participants in the activity, calories, and intensities datasets, 24 in the sleep dataset, and only 8 in the weight dataset. Having only 8 participants in the "weight" dataset is not significant enough to make any recommendations or conclusions based on this data. More data would be needed to draw strong recommendations or conclusions.   
 Now, let’s take a look at the summary statistics of the datasets:
 ```
@@ -196,4 +200,84 @@ weight %>%
   select(WeightKg, BMI) %>%
   summary()
 ```
-[summery]
+![summery](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/42e69e91-07ca-4cb1-9230-ffc9df5d6083)   
+From the results, we can conclude that:
+1- The average number of steps per day is 7638. According to [CDC research](https://www.cdc.gov/physicalactivity/basics/pa-health/index.htm), taking 8,000 steps per day was associated with a 51% lower risk for all-cause mortality. Taking 12,000 steps per day was associated with a 65% lower risk compared with taking 4,000 steps.
+2- Participants are sedentary for about 16 hours, which is too much and needs to be reduced.
+3- The majority of the participants are lightly active.
+4- On average, participants sleep for almost 7 hours. However, they seem to struggle to fall asleep, as indicated by the mean of total time in bed.
+#### Visualization
+```
+#Total Steps vs. Calories
+
+ggplot(data=activity, aes(x=TotalSteps, y=Calories)) + 
+  geom_point() + geom_smooth() + labs(title="Total Steps vs. Calories")
+```
+![Total Steps vs  Calories](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/035a91b3-aeb2-4e38-a9d3-b48d7395c93a)   
+This scatter chart indicates a positive correlation between the total number of steps taken and calories burned, which is expected. The more active individuals are, the more calories they burn.
+```
+# Total Minutes Asleep vs. Total Time in Bed
+
+ggplot(data=sleep, aes(x=TotalMinutesAsleep, y=TotalTimeInBed)) + 
+  geom_point()+ labs(title="Total Minutes Asleep vs. Total Time in Bed")
+```
+![Total Minutes Asleep vs  Total Time in Bed](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/9bc99bfb-68c6-4ee2-9782-b4a977e81429)    
+There is a positive correlation between Total Minutes Asleep and Total Time in Bed, and it appears to be linear. To enhance the sleep quality of users, Bellabeat should consider incorporating a feature where users can customize their sleep schedule and utilize notifications to remind them to go to sleep.
+```
+# Sleep Duration and Sedentary Time
+ggplot(data = merged_df, mapping = aes(x = SedentaryMinutes, y = TotalMinutesAsleep)) + 
+  geom_point() + labs(title= "Sleep Duration and Sedentary Time")
+```
+![Sleep Duration and Sedentary Time](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/2b428890-5a38-4a03-acdf-59c6851b446a)   
+```{r}
+cor(merged_df$TotalMinutesAsleep,merged_df$SedentaryMinutes)
+```
+![covariance](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/a3959234-9724-4156-9d43-74f1940d20e4)   
+The correlation result between **Sleep Duration** and **Sedentary Time** in the graph above indicates a negative correlation between these two variables. This implies that the less active a participant is, the less sleep they tend to get.
+```
+# Minutes Asleep vs. Sedentary Minutes
+
+ggplot(data=merged_df, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) + 
+  geom_point(color='black') + geom_smooth() +
+  labs(title="Minutes Asleep vs. Sedentary Minutes")
+```
+![Minutes Asleep vs  Sedentary Minutes](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/01b200f8-136f-493c-ac05-88df529685d8)   
+The chart illustrates a negative relationship between Sedentary Minutes and Sleep Time. This suggests that users should reduce their sedentary time to improve their sleep.
+```
+# Average Total Intensity vs. Time
+
+# First, making a new data set called "intensities_grouped"
+# Then group the users by average total intensity
+
+intensities_grouped <- intensities %>%
+  group_by(time) %>%
+  drop_na() %>%
+  summarise(avg_intensity = mean(TotalIntensity))
+
+ggplot(data=intensities_grouped, aes(x=time, y=avg_intensity)) + geom_histogram(stat = "identity", fill='blue') +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title="Average Total Intensity vs. Time")
+```
+![Average Total Intensity vs  Time](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/12212305-6d8a-4e26-8729-5abdecb263f9)   
+This bar graph shows that users start their activity at 5 am, with the peak of activity occurring between 17 and 19.
+```
+# Steps count for each days of week
+
+# Making a new data set from "merged_df" to separate day of the week
+
+day_week <- mutate(merged_df, day = wday(SleepDay, label = TRUE))
+
+# Making a new data set to group days of the week by average of total steps
+avg_steps <- day_week %>% 
+  group_by(day) %>% 
+  summarise(avg_daily_steps = mean(TotalSteps))
+
+ggplot(data = avg_steps, mapping = aes(x = day, y = avg_daily_steps)) +
+  geom_col(fill = "darkblue") + labs(title = "Daily Step Count")
+```
+![Daily step counts](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/81a7a786-0056-4268-8cce-f5650e6fcc73)   
+The bar graph indicates that users are most active on Saturdays and least active on Sundays. Since Sundays are a day off as well, it is expected that users have more time for their activities. Therefore, Bellabeat can encourage them to engage in activities on Sundays by sending notifications.
+### 5- Share
+For this step of the analysis, I created this report using **R Markdown**.
+
+### 6- Act
