@@ -1,4 +1,4 @@
-# bellabeat
+![activity glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b74dd8cc-2611-443f-a716-788da2dc753e)# bellabeat
 
 A Goolge Data Analytics Case Study
 
@@ -38,7 +38,7 @@ library(ggplot2)
 library(tidyr)
 library(readr)
 ```
-![Start](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/1a044868-a21f-468a-8101-36b31063d876)   
+![Start](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/dc38d3c1-31fd-4dcc-bda0-5d952acb900e)   
 Then, I loaded the necessary datasets from my local computer location into R Studio.
 ```{r}
 # Loading data from my local storage
@@ -70,11 +70,11 @@ glimpse(sleep)
 # weight
 glimpse(weight)
 ```
-![activity glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/c136796b-024a-4e22-92c6-0b82eb7eb3ae)   
-![calories glimps](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b6419f7b-184b-4efc-b9fd-b95e488757ac)   
-![intensities glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/23ec7ca8-8840-44e0-be6e-3bb117a415f4)   
-![sleep glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/7ede147b-264f-431b-8683-102be13cb780)   
-![weight glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/42e2eafc-6455-4298-b7e7-4504c1253dc9)   
+![activity glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/a0232db9-6644-429a-a1a8-6d44219433e9)   
+![calories glimps](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/51900b80-38f5-4c0a-8e6a-4f717964d63b)   
+![intensities glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/4b581e36-317f-4a21-9302-fbe4e7ca1d53)   
+![Uploading ![sleep glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/8f7a3904-17d3-482b-96c6-3495072cc5e6)   
+![weight glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/92a16bea-9757-40e6-ac72-627c01ea3808)   
 #### Cleaning data
 By looking at the datasets, I noticed that some columns include both *date* and *time* in the same cells. I decided to separate these two into different columns for each dataset, maintaining the same date and time format.
 ```{r}
@@ -213,7 +213,7 @@ From the results, we can conclude that:
 ggplot(data=activity, aes(x=TotalSteps, y=Calories)) + 
   geom_point() + geom_smooth() + labs(title="Total Steps vs. Calories")
 ```
-![Total Steps vs  Calories](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/035a91b3-aeb2-4e38-a9d3-b48d7395c93a)   
+![Total Steps vs  Calories](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/71924e1f-1698-4c08-871d-02d3316954aa)   
 This scatter chart indicates a positive correlation between the total number of steps taken and calories burned, which is expected. The more active individuals are, the more calories they burn.
 ```
 # Total Minutes Asleep vs. Total Time in Bed
@@ -221,14 +221,15 @@ This scatter chart indicates a positive correlation between the total number of 
 ggplot(data=sleep, aes(x=TotalMinutesAsleep, y=TotalTimeInBed)) + 
   geom_point()+ labs(title="Total Minutes Asleep vs. Total Time in Bed")
 ```
-![Total Minutes Asleep vs  Total Time in Bed](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/9bc99bfb-68c6-4ee2-9782-b4a977e81429)    
+ ![Total Minutes Asleep vs  Total Time in Bed](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/33ce02ec-8549-4705-8507-65e88d9d15c4)   
+
 There is a positive correlation between Total Minutes Asleep and Total Time in Bed, and it appears to be linear. To enhance the sleep quality of users, Bellabeat should consider incorporating a feature where users can customize their sleep schedule and utilize notifications to remind them to go to sleep.
 ```
 # Sleep Duration and Sedentary Time
 ggplot(data = merged_df, mapping = aes(x = SedentaryMinutes, y = TotalMinutesAsleep)) + 
   geom_point() + labs(title= "Sleep Duration and Sedentary Time")
 ```
-![Sleep Duration and Sedentary Time](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/2b428890-5a38-4a03-acdf-59c6851b446a)   
+ ![Sleep Duration and Sedentary Time](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/75699236-1382-4fe3-bf34-7afe77f61abf)   
 ```{r}
 cor(merged_df$TotalMinutesAsleep,merged_df$SedentaryMinutes)
 ```
@@ -241,7 +242,7 @@ ggplot(data=merged_df, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) +
   geom_point(color='black') + geom_smooth() +
   labs(title="Minutes Asleep vs. Sedentary Minutes")
 ```
-![Minutes Asleep vs  Sedentary Minutes](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/01b200f8-136f-493c-ac05-88df529685d8)   
+![Minutes Asleep vs  Sedentary Minutes](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/5c1fee85-e305-4c1a-8789-cac58afd9ad1)   
 The chart illustrates a negative relationship between Sedentary Minutes and Sleep Time. This suggests that users should reduce their sedentary time to improve their sleep.
 ```
 # Average Total Intensity vs. Time
@@ -258,7 +259,7 @@ ggplot(data=intensities_grouped, aes(x=time, y=avg_intensity)) + geom_histogram(
   theme(axis.text.x = element_text(angle = 90)) +
   labs(title="Average Total Intensity vs. Time")
 ```
-![Average Total Intensity vs  Time](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/12212305-6d8a-4e26-8729-5abdecb263f9)   
+![Average Total Intensity vs  Time](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b04428f0-db96-409a-bff4-bda0ca92688e)   
 This bar graph shows that users start their activity at 5 am, with the peak of activity occurring between 17 and 19.
 ```
 # Steps count for each days of week
@@ -275,7 +276,7 @@ avg_steps <- day_week %>%
 ggplot(data = avg_steps, mapping = aes(x = day, y = avg_daily_steps)) +
   geom_col(fill = "darkblue") + labs(title = "Daily Step Count")
 ```
-![Daily step counts](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/81a7a786-0056-4268-8cce-f5650e6fcc73)   
+![Daily step counts](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/f37a78e6-e4ac-45e7-8ea7-d8aca0b6f7a7)   
 The bar graph indicates that users are most active on Saturdays and least active on Sundays. Since Sundays are a day off as well, it is expected that users have more time for their activities. Therefore, Bellabeat can encourage them to engage in activities on Sundays by sending notifications.
 ### 5- Share
 For this step of the analysis, I created this report using **R Markdown**.
