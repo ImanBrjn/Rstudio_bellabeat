@@ -73,7 +73,7 @@ glimpse(weight)
 ![activity glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/a0232db9-6644-429a-a1a8-6d44219433e9)   
 ![calories glimps](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/51900b80-38f5-4c0a-8e6a-4f717964d63b)   
 ![intensities glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/4b581e36-317f-4a21-9302-fbe4e7ca1d53)   
-![Uploading ![sleep glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/8f7a3904-17d3-482b-96c6-3495072cc5e6)   
+![sleep glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/8f7a3904-17d3-482b-96c6-3495072cc5e6)   
 ![weight glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/92a16bea-9757-40e6-ac72-627c01ea3808)   
 #### Cleaning data
 By looking at the datasets, I noticed that some columns include both *date* and *time* in the same cells. I decided to separate these two into different columns for each dataset, maintaining the same date and time format.
