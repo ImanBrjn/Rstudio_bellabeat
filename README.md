@@ -282,3 +282,14 @@ The bar graph indicates that users are most active on Saturdays and least active
 For this step of the analysis, I created this report using **R Markdown**.
 
 ### 6- Act
+After processing, analyzing, and sharing the insights, it's time to provide recommendations for Bellabeat. My recommendations are:    
+
+1- Bellabeat should encourage and remind users to take at least 8000 steps per day.
+2- Bellabeat could use motion sensors in their devices to alert users if they stay sedentary for too long.
+3- Bellabeat could create schedules for users to get 8 hours of sleep every day. They should also consider incorporating a feature where users can customize their sleep schedule and utilize notifications to remind them to go to sleep.
+4- As the analysis showed that if users become more sedentary, their sleep quality drops, the company could provide motivation to improve users' activity for better sleep quality.
+5- Bellabeat can encourage users to engage in activities on Sundays by sending notifications.
+
+## Conclusion
+In this project, I collaborated with Bellabeat, a high-tech manufacturer of health-focused products for women. I utilized R-Studio for data preparation, cleaning, conducted analysis, and  data visualization. The goal was to focus on one of Bellabeat's products and analyze smart device data to gain insight into how consumers are using their smart devices. I presented recommendations to the team to help guide the marketing strategy for the company.   
+Thank you for taking the time to read my Capstone Project!
