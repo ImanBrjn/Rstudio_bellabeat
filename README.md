@@ -1,4 +1,4 @@
-![activity glimpse](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b74dd8cc-2611-443f-a716-788da2dc753e)# bellabeat
+# bellabeat
 
 A Goolge Data Analytics Case Study
 
