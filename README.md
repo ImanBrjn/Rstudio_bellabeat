@@ -28,7 +28,7 @@ The data used in this case study can be found in the [FitBit Fitness Tracker Dat
 
 #### Tool
 I used ***R Studio*** to conduct this case study, and I wrote this report using *R Markdown*. To perform the analysis, I first installed and loaded the required packages and libraries in R Studio.
-```
+```{r}
 # Loading packages for data manipulation and visualization
 
 library(tidyverse)
