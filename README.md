@@ -52,7 +52,7 @@ weight <- read.csv("../Fitabase Data 4.12.16-5.12.16/weightLogInfo_merged.csv")
 ```
 #### Data exploring
 After loading my packages and data, I checked my tables to ensure they were properly imported.
-```
+```{r}
 # Checking columns and number of rows of data setss
 
 # activity
@@ -105,7 +105,7 @@ weight$date <- format(weight$Date, format = "%m/%d/%y")
 ```
 
 Next, I checked for any missing values.
-```
+```{r}
 # Checking for missing values
 
 # activity
@@ -122,7 +122,7 @@ any(is.na(weight))
 ![missing values](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/66902451-d727-4aeb-9279-f29669ac8f72)   
 
 **TRUE** indicates that there are some missing values, and by checking the data sets, it is obvious that there are some *NA* in the *FAT* column. I don't need this column, so I decided to omit it.
-```
+```{r}
 # Omit "fat" column
 
 weight <- weight[, !(names(weight) %in% c("Fat"))]
@@ -132,7 +132,7 @@ any(is.na(weight))
 ```
 ![recheck](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b6e181a2-1ee1-47f6-a4c3-e13eea101d82)    
 Next, I checked the datasets for any duplicates
-```
+```{r}
 # Checking for duplicates
 sum(duplicated(activity))
 sum(duplicated(calories))
@@ -142,7 +142,7 @@ sum(duplicated(weight))
 ```
 ![duplicates](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/27de4861-c8c9-4db4-ae1d-3a8f67be4123)   
 The result shows that there are three duplicate rows in the *sleep* dataset. So, I removed the duplicates.
-```
+```{r}
 # Removing duplicates
 sleep <- sleep %>% distinct()
 
@@ -151,7 +151,7 @@ sum(duplicated(sleep))
 ```
 ![remove duplicates](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/8d2b4138-1845-4162-9774-dd8b9cebbbc3)   
 I wanted to make a comparison between "activity" and "sleep". So, I decided to merge these two datasets into a dataset called "**merged_df**" using an **inner join** on columns *Id* and *date* (that I previously created after converting data to date-time format).
-```
+```{r}
 # Merging activity and sleep 
 merged_df <- merge(sleep, activity, by=c('Id', 'date'))
 ```
@@ -161,7 +161,7 @@ Now that my data is stored appropriately and has been prepared for analysis, it'
 
 #### Statistical
 I first checked the number of participants in each category.
-```
+```{r}
 # Number of participants
 n_distinct(activity$Id)  
 n_distinct(calories$Id)   
@@ -172,7 +172,7 @@ n_distinct(weight$Id)
 ![participants](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/1103e549-a46a-4733-a930-ff8b322d79d7)    
 The results show that there are 33 participants in the activity, calories, and intensities datasets, 24 in the sleep dataset, and only 8 in the weight dataset. Having only 8 participants in the "weight" dataset is not significant enough to make any recommendations or conclusions based on this data. More data would be needed to draw strong recommendations or conclusions.   
 Now, let’s take a look at the summary statistics of the datasets:
-```
+```{r}
 # Checking summery statistics
 
 # activity
@@ -207,7 +207,7 @@ From the results, we can conclude that:
 3- The majority of the participants are lightly active.
 4- On average, participants sleep for almost 7 hours. However, they seem to struggle to fall asleep, as indicated by the mean of total time in bed.
 #### Visualization
-```
+```{r}
 #Total Steps vs. Calories
 
 ggplot(data=activity, aes(x=TotalSteps, y=Calories)) + 
@@ -215,7 +215,7 @@ ggplot(data=activity, aes(x=TotalSteps, y=Calories)) +
 ```
 ![Total Steps vs  Calories](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/71924e1f-1698-4c08-871d-02d3316954aa)   
 This scatter chart indicates a positive correlation between the total number of steps taken and calories burned, which is expected. The more active individuals are, the more calories they burn.
-```
+```{r}
 # Total Minutes Asleep vs. Total Time in Bed
 
 ggplot(data=sleep, aes(x=TotalMinutesAsleep, y=TotalTimeInBed)) + 
@@ -224,7 +224,7 @@ ggplot(data=sleep, aes(x=TotalMinutesAsleep, y=TotalTimeInBed)) +
  ![Total Minutes Asleep vs  Total Time in Bed](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/33ce02ec-8549-4705-8507-65e88d9d15c4)   
 
 There is a positive correlation between Total Minutes Asleep and Total Time in Bed, and it appears to be linear. To enhance the sleep quality of users, Bellabeat should consider incorporating a feature where users can customize their sleep schedule and utilize notifications to remind them to go to sleep.
-```
+```{r}
 # Sleep Duration and Sedentary Time
 ggplot(data = merged_df, mapping = aes(x = SedentaryMinutes, y = TotalMinutesAsleep)) + 
   geom_point() + labs(title= "Sleep Duration and Sedentary Time")
@@ -235,7 +235,7 @@ cor(merged_df$TotalMinutesAsleep,merged_df$SedentaryMinutes)
 ```
 ![covariance](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/a3959234-9724-4156-9d43-74f1940d20e4)   
 The correlation result between **Sleep Duration** and **Sedentary Time** in the graph above indicates a negative correlation between these two variables. This implies that the less active a participant is, the less sleep they tend to get.
-```
+```{r}
 # Minutes Asleep vs. Sedentary Minutes
 
 ggplot(data=merged_df, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) + 
@@ -244,7 +244,7 @@ ggplot(data=merged_df, aes(x=TotalMinutesAsleep, y=SedentaryMinutes)) +
 ```
 ![Minutes Asleep vs  Sedentary Minutes](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/5c1fee85-e305-4c1a-8789-cac58afd9ad1)   
 The chart illustrates a negative relationship between Sedentary Minutes and Sleep Time. This suggests that users should reduce their sedentary time to improve their sleep.
-```
+```{r}
 # Average Total Intensity vs. Time
 
 # First, making a new data set called "intensities_grouped"
@@ -261,7 +261,7 @@ ggplot(data=intensities_grouped, aes(x=time, y=avg_intensity)) + geom_histogram(
 ```
 ![Average Total Intensity vs  Time](https://github.com/ImanBrjn/bellabeat_Rstudio/assets/140934258/b04428f0-db96-409a-bff4-bda0ca92688e)   
 This bar graph shows that users start their activity at 5 am, with the peak of activity occurring between 17 and 19.
-```
+```{r}
 # Steps count for each days of week
 
 # Making a new data set from "merged_df" to separate day of the week
