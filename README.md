@@ -292,4 +292,5 @@ After processing, analyzing, and sharing the insights, it's time to provide reco
 
 ## Conclusion
 In this project, I collaborated with Bellabeat, a high-tech manufacturer of health-focused products for women. I utilized R-Studio for data preparation, cleaning, conducted analysis, and  data visualization. The goal was to focus on one of Bellabeat's products and analyze smart device data to gain insight into how consumers are using their smart devices. I presented recommendations to the team to help guide the marketing strategy for the company.   
-Thank you for taking the time to read my Capstone Project!
+   
+**Thank you for taking the time to read my Capstone Project!**
